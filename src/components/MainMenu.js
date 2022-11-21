@@ -1,6 +1,7 @@
 import { Papa } from "papaparse";
 import { useState } from "react";
 import { useCSVReader } from "react-papaparse";
+import axios from "axios";
 
 function MainMenu() {
   const [jsonFile, setJsonFile] = useState(null);
@@ -24,6 +25,16 @@ function MainMenu() {
                 console.log(results.data);
                 setJsonFile(results.data);
                 console.log("---------------------------");
+                axios
+                  .post(`http://localhost/procesador.php`, {
+                    json: JSON.stringify(results.data),
+                  })
+                  .then((res) => {
+                    console.log(res);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
               }}
               on
             >
