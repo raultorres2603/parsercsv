@@ -26,8 +26,8 @@ function MainMenu() {
                 setJsonFile(results.data);
                 console.log("---------------------------");
                 axios
-                  .post(`http://localhost/procesador.php`, {
-                    json: JSON.stringify(results.data),
+                  .post(`http://192.168.25.95:3000/api/insertcsv`, {
+                    csv: JSON.stringify(results.data),
                   })
                   .then((res) => {
                     console.log(res);
